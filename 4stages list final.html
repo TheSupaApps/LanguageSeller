@@ -1,0 +1,830 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	width:705px;
+	height:482px;
+	z-index:1;
+	left: 14px;
+	top: 109px;
+	visibility: visible;
+}
+-->
+</style>
+</head>
+ 
+<body>
+<form id="form1" name="form1" method="post" action="">
+<table width="813">
+<tr>
+<td width="98" align="right" valign="top"><div align="left">蘭桂菊專賣：</div></td>
+<td width="703"><div align="left"><span style="FONT-SIZE: 9pt">正體/簡體中文</span>
+    <select name="Layer1" 
+onchange=  "changeType(document.form1.Layer1, document.form1.Layer2),
+			changeFolder(document.form1.Layer1, document.form1.Layer2, document.form1.Layer3),
+			changeEditor(document.form1.Layer1, document.form1.Layer2, document.form1.Layer3, document.form1.Layer4)" size="1">
+      </select>
+    <span style="FONT-SIZE: 9pt">類別</span>
+    <select name="Layer2" 
+onchange=  "changeFolder(document.form1.Layer1, document.form1.Layer2, document.form1.Layer3),
+			changeEditor(document.form1.Layer1, document.form1.Layer2, document.form1.Layer3, document.form1.Layer4)" size="1">
+      </select>
+    <span style="FONT-SIZE: 9pt">學習文件夾</span>
+    <select name="Layer3"
+onchange=  "changeEditor(document.form1.Layer1, document.form1.Layer2, document.form1.Layer3, document.form1.Layer4)" size="1">
+      </select>
+    <span style="FONT-SIZE: 9pt">編輯作者</span>
+    <select name="Layer4" 
+
+size="1">
+      </select>
+</div></td>
+</tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+<!--
+//==================== for zip code begin =========================
+L1 = new Array("正體中文", "簡體中文");
+
+
+L2 = new Array(2);
+// for "正體中文"
+L2[0] = new Array("全民英檢", "TOEIC",  "高中", "國中", "PVQC", "其他");
+// for "簡體中文"
+L2[1] = new Array("全民英檢", "TOEIC",  "高中", "國中", "PVQC", "其他");
+
+
+
+L3 = new Array(L2.length);
+//set a new 2D array for Game Note.JS無法直接宣告多維空白陣列
+for(i = 0; i < L2.length ; i++){
+	L3[i] = new Array ();
+}
+//for 正體中文
+	L3[0][0] = ["初級","中級","中高級","高級"];
+	L3[0][1] = ["A~H","I~Z"];
+	L3[0][2] = ["一上","一下", "二上", "二下", "三上", "三下"];
+	L3[0][3] = ["一上","一下", "二上", "二下", "三上", "三下"];
+	L3[0][4] = ["電機專業/專家", "美容專業/專家"];
+	L3[0][5] = ["conversational", "狄克森片語"];
+
+//for 簡體中文
+	L3[1][0] = ["初級","中級","中高級","高級"];
+	L3[1][1] = ["A~H","I~Z"];;
+	L3[1][2] = ["一上","一下", "二上", "二下", "三上", "三下"];
+	L3[1][3] = ["一上","一下", "二上", "二下", "三上", "三下"];
+	L3[1][4] = ["電機專業/專家", "美容專業/專家"];
+	L3[1][5] = ["conversational", "狄克森片語"];
+	
+
+
+L4 = new Array(L2.length);
+	//創造3D陣列 Layer4
+	for(i = 0; i< L2.length ; i++){
+		L4[i] = new Array ()
+		for(j = 0; j< L3[i].length ; j++){
+			L4[i][j] = new Array();
+		}
+	}
+
+	//正.全民
+	L4[0][0][0] = ["林教授", "老李", "abcForAll"];
+	L4[0][0][1] = ["林教授", "老李", "abcForAll"];
+	L4[0][0][2] = ["林教授", "老李", "abcForAll"];
+	
+	//正.多
+	L4[0][1][0] = ["林教授", "老李", "abcForAll"];
+	L4[0][1][1] = ["林教授", "老李", "abcForAll"];
+	
+	//正.高中
+	L4[0][2][0] = ["林教授", "老李", "abcForAll"];
+	L4[0][2][1] = ["林教授", "老李", "abcForAll"];
+	L4[0][2][2] = ["林教授", "老李", "abcForAll"];
+	L4[0][2][3] = ["林教授", "老李", "abcForAll"];
+	L4[0][2][4] = ["林教授", "老李", "abcForAll"];
+	L4[0][2][5] = ["林教授", "老李", "abcForAll"];
+	
+	//正.國中
+	L4[0][3][0] = ["林教授", "老李", "abcForAll"];
+	L4[0][3][1] = ["林教授", "老李", "abcForAll"];
+	L4[0][3][2] = ["林教授", "老李", "abcForAll"];
+	L4[0][3][3] = ["林教授", "老李", "abcForAll"];
+	L4[0][3][4] = ["林教授", "老李", "abcForAll"];
+	L4[0][3][5] = ["林教授", "老李", "abcForAll"];
+	
+	//正.PVQC
+	L4[0][4][0] = ["林教授", "老李", "abcForAll"];
+	L4[0][4][1] = ["林教授", "老李", "abcForAll"];
+	
+	//正.其他
+	L4[0][5][0] = ["林教授", "老李", "abcForAll"];
+	L4[0][5][1] = ["林教授", "老李", "abcForAll"];
+	
+//=========================================================================
+
+	//簡.全民
+	L4[1][0][0] = ["林教授", "老李", "abcForAll"];
+	L4[1][0][1] = ["林教授", "老李", "abcForAll"];
+	L4[1][0][2] = ["林教授", "老李", "abcForAll"];
+	
+	//簡.多
+	L4[1][1][0] = ["林教授", "老李", "abcForAll"];
+	L4[1][1][1] = ["林教授", "老李", "abcForAll"];
+	
+	//簡.高中
+	L4[1][2][0] = ["林教授", "老李", "abcForAll"];
+	L4[1][2][1] = ["林教授", "老李", "abcForAll"];
+	L4[1][2][2] = ["林教授", "老李", "abcForAll"];
+	L4[1][2][3] = ["林教授", "老李", "abcForAll"];
+	L4[1][2][4] = ["林教授", "老李", "abcForAll"];
+	L4[1][2][5] = ["林教授", "老李", "abcForAll"];
+	
+	//簡.國中
+	L4[1][3][0] = ["林教授", "老李", "abcForAll"];
+	L4[1][3][1] = ["林教授", "老李", "abcForAll"];
+	L4[1][3][2] = ["林教授", "老李", "abcForAll"];
+	L4[1][3][3] = ["林教授", "老李", "abcForAll"];
+	L4[1][3][4] = ["林教授", "老李", "abcForAll"];
+	L4[1][3][5] = ["林教授", "老李", "abcForAll"];
+	
+	//簡.PVQC
+	L4[1][4][0] = ["林教授", "老李", "abcForAll"];
+	L4[1][4][1] = ["林教授", "老李", "abcForAll"];
+	
+	//簡.其他
+	L4[1][5][0] = ["林教授", "老李", "abcForAll"];
+	L4[1][5][1] = ["林教授", "老李", "abcForAll"];
+	
+/*=======================================================================
+
+	//Junior=>A
+	L4[2][0][0] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8", "Chapter9", "Chapter10"];
+	L4[2][0][1] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8", "Chapter9", "Chapter10"];
+	L4[2][0][2] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8", "Chapter9", "Chapter10"];
+	
+	//Junior=>B
+	L4[2][1][0] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[2][1][1] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[2][1][2] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[2][1][3] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[2][1][4] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[2][1][5] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	
+	//Junior=>C
+	L4[2][2][0] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[2][2][1] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[2][2][2] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[2][2][3] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[2][2][4] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[2][2][5] = ["Chapter1", "Chapter2", "Chapter3"];
+	
+	//Junior=>D
+	L4[2][3][0] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8"];
+	L4[2][3][1] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8"];
+	L4[2][3][2] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7"];
+//=======================================================================
+
+	//Senior=>A
+	L4[3][0][0] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8", "Chapter9", "Chapter10"];
+	L4[3][0][1] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8", "Chapter9", "Chapter10"];
+	L4[3][0][2] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8", "Chapter9", "Chapter10"];
+	
+	//Senior=>B
+	L4[3][1][0] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[3][1][1] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[3][1][2] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[3][1][3] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[3][1][4] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	L4[3][1][5] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5"];
+	
+	//Senior=>C
+	L4[3][2][0] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[3][2][1] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[3][2][2] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[3][2][3] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[3][2][4] = ["Chapter1", "Chapter2", "Chapter3"];
+	L4[3][2][5] = ["Chapter1", "Chapter2", "Chapter3"];
+	
+	//Senior=>D
+	L4[3][3][0] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8"];
+	L4[3][3][1] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7", "Chapter8"];
+	L4[3][3][2] = ["Chapter1", "Chapter2", "Chapter3", "Chapter4", "Chapter5", "Chapter6", "Chapter7"];
+//=======================================================================================================================================
+*/	
+	
+
+//把Layer1中的內容放到Layer2的欄位之中
+function initLanguage(languageInput){
+	languageInput.length = L1.length;
+	for (i = 0; i < L1.length; i++) {
+		languageInput.options[i].value = L1[i];
+		languageInput.options[i].text = L1[i];
+	}
+	languageInput.selectedIndex = 0; //把預設的選項放在0
+}
+
+
+function initType(languageInput, typeInput){
+	changeType(languageInput, typeInput);
+}
+
+
+function changeType(languageInput, typeInput) {
+	selectedLanguageIndex = languageInput.selectedIndex;
+	typeInput.length = L2[selectedLanguageIndex].length;
+	for (i = 0; i < L2[selectedLanguageIndex].length; i++) {
+		typeInput.options[i].value = L2[selectedLanguageIndex][i];
+		typeInput.options[i].text = L2[selectedLanguageIndex][i];//利用Layer2欄位的index對應出該Layer2的Layer3欄位，並且一一放入Layer3欄當中
+	}
+	typeInput.selectedIndex = 0;//將欄調整到第一個選項
+}
+
+
+function initFolder(languageInput, typeInput, folderInput){
+	changeFolder(languageInput, typeInput, folderInput);
+}
+
+
+//同上 根據前兩層選單更動第三層
+function changeFolder(languageInput, typeInput, folderInput){
+	selectedLanguageIndex = languageInput.selectedIndex;
+	selectedTypeIndex = typeInput.selectedIndex;
+	folderInput.length = L3[selectedLanguageIndex][selectedTypeIndex].length;
+	for(i = 0; i < L3[selectedLanguageIndex][selectedTypeIndex].length; i++){
+		folderInput.options[i].value = L3[selectedLanguageIndex][selectedTypeIndex][i];
+		folderInput.options[i].text = L3[selectedLanguageIndex][selectedTypeIndex][i];
+	}
+	folderInput.selectedIndex = 0;
+}
+
+
+function initEditor(languageInput, typeInput, folderInput, editorInput){
+	changeEditor(languageInput, typeInput, folderInput, editorInput);
+}
+
+
+function changeEditor(languageInput, typeInput, folderInput, editorInput){
+	selectedLanguageIndex = languageInput.selectedIndex;
+	selectedEdiotrIndex = typeInput.selectedIndex;
+	selectedFolderIndex = folderInput.selectedIndex;
+	editorInput.length = L4[selectedLanguageIndex][selectedTypeIndex][selectedFolderIndex].length;
+	for(i = 0; i < editorInput.length; i++){
+		editorInput.options[i].value = L4[selectedLanguageIndex][selectedTypeIndex][selectedFolderIndex][i];
+		editorInput.options[i].text = L4[selectedLanguageIndex][selectedTypeIndex][selectedFolderIndex][i];
+	}
+	editorInput.selectedIndex = 0;
+}
+
+
+
+//======================================================================================================================  以下為連結預覽圖的功能
+
+function PreviewLink(languageInput, typeInput, folderInput, editorInput){   //map preview pdf/graphic
+	
+	//for 正體中文
+	if(languageInput == 0){
+		if(typeInput == 0){                 //for 正.全
+			if(folderInput == 0){			  	//for 正.全.初	
+				if(editorInput == 0){
+					location.href="Pic0000.htm";//開啟圖片0000;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0001;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0002;
+				}
+			}
+			else if(folderInput == 1){		//for 正.全.中
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0010;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0011;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0012;
+				}
+			}
+			else if(folderInput == 2){		//for 正.全.中高
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0020;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0021;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0022;
+				}
+			}
+			else if(folderInput == 3){		//for 正.全.高
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0030;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0031;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0032;
+				}
+			}
+		}
+		else if(typeInput == 1){           //for 正.多   
+			if(folderInput == 0){            //for 正.多.A-H
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0100;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0101;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0102;
+				}
+			}
+			else if(folderInput == 1){       //for 正.多.I-Z
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0110;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0111;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0112;
+				}
+			}
+		}
+		else if(typeInput == 2){          //for 正.高中     
+			if(folderInput == 0){           //for 正.高中.一上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0200;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片0201;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0202;
+				}
+			}
+			else if(folderInput == 1){	  //for 正.高中.一下
+				if(editorInput == 0){
+					location.href="Pic0210.htm";//開啟圖片0210;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0211;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0212;
+				}
+			}
+			else if(folderInput == 2){	  //for 正.高中.二上
+				if(editorInput == 0){
+					location.href="Pic0220.htm";//開啟圖片0220;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0221;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0222;
+				}
+			}
+			else if(folderInput == 3){	  //for 正.高中.二下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0230;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0231;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0232;
+				}
+			}
+			else if(folderInput == 4){	  //for 正.高中.三上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0240;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0241;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0242;
+				}
+			}
+			else if(folderInput == 5){	  //for 正.高中.三下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0250;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0251;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0252;
+				}
+			}
+		}
+		else if(typeInput == 3){          //for 正.國中     
+			if(folderInput == 0){           //for 正.國中.一上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0300;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片0301;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0302;
+				}
+			}
+			else if(folderInput == 1){	  //for 正.國中.一下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0310;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0311;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0312;
+				}
+			}
+			else if(folderInput == 2){	  //for 正.國中.二上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0320;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0321;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0322;
+				}
+			}
+			else if(folderInput == 3){	  //for 正.國中.二下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0330;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0331;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0332;
+				}
+			}
+			else if(folderInput == 4){	  //for 正.國中.三上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0340;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0341;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0342;
+				}
+			}
+			else if(folderInput == 5){	  //for 正.國中.三下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0350;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片0351;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片0352;
+				}
+			}
+		}
+		else if(typeInput == 4){          //for 正.PVQC 
+			if(folderInput == 0){           //for 正.PVQC.電機
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0400;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片0401
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//開啟圖片0402
+				}
+			}
+			else if(folderInput == 1){	  //for 正.PVQC.美容
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片0410;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片0411
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//開啟圖片0412
+				}
+			}
+		}
+		else if(typeInput == 5){          //for 正.其他 
+			if(folderInput == 0){           //for 正.其他.對話
+				if(editorInput == 0){
+					location.href="Pic0500.htm";//開啟圖片0500;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片0501
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//開啟圖片0502
+				}
+			}
+			else if(folderInput == 1){	  //for 正.其他.狄克森
+				if(editorInput == 0){
+					location.href="Pic0510.htm";//開啟圖片0510;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片0511
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//開啟圖片0512
+				}
+			}
+		}
+	}
+//========================================================================================================================================
+//========================================================================================================================================
+	//for 簡體中文
+	else if(languageInput == 1){
+		if(typeInput == 0){                 //for 簡.全
+			if(folderInput == 0){			  	//for 簡.全.初	
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1000;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1001;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1002;
+				}
+			}
+			else if(folderInput == 1){		//for 簡.全.中
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1010;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1011;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1012;
+				}
+			}
+			else if(folderInput == 2){		//for 簡.全.中高
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1020;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1021;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1022;
+				}
+			}
+			else if(folderInput == 3){		//for 簡.全.高
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1030;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1031;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1032;
+				}
+			}
+		}
+		else if(typeInput == 1){           //for 簡.多   
+			if(folderInput == 0){            //for 簡.多.A-H
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1100;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1101;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1102;
+				}
+			}
+			else if(folderInput == 1){       //for 簡.多.I-Z
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1110;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1111;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1112;
+				}
+			}
+		}
+		else if(typeInput == 2){          //for 簡.高中     
+			if(folderInput == 0){           //for 簡.高中.一上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1200;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片1201;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1202;
+				}
+			}
+			else if(folderInput == 1){	  //for 簡.高中.一下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1210;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1211;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1212;
+				}
+			}
+			else if(folderInput == 2){	  //for 簡.高中.二上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1220;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1221;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1222;
+				}
+			}
+			else if(folderInput == 3){	  //for 簡.高中.二下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1230;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1231;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1232;
+				}
+			}
+			else if(folderInput == 4){	  //for 簡.高中.三上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1240;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1241;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1242;
+				}
+			}
+			else if(folderInput == 5){	  //for 簡.高中.三下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1250;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1251;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1252;
+				}
+			}
+		}
+		else if(typeInput == 3){          //for 簡.國中     
+			if(folderInput == 0){           //for 簡.國中.一上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1300;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片1301;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1302;
+				}
+			}
+			else if(folderInput == 1){	  //for 簡.國中.一下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1310;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1311;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1312;
+				}
+			}
+			else if(folderInput == 2){	  //for 簡.國中.二上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1320;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1321;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1322;
+				}
+			}
+			else if(folderInput == 3){	  //for 簡.國中.二下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1330;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1331;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1332;
+				}
+			}
+			else if(folderInput == 4){	  //for 簡.國中.三上
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1340;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1341;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1342;
+				}
+			}
+			else if(folderInput == 5){	  //for 簡.國中.三下
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1350;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//圖片1351;
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//圖片1352;
+				}
+			}
+		}
+		else if(typeInput == 4){          //for 簡.PVQC 
+			if(folderInput == 0){           //for 簡.PVQC.電機
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1400;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片1401
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//開啟圖片1402
+				}
+			}
+			else if(folderInput == 1){	  //for 簡.PVQC.美容
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1410;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片1411
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//開啟圖片1412
+				}
+			}
+		}
+		else if(typeInput == 5){          //for 簡.其他 
+			if(folderInput == 0){           //for 簡.其他.對話
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1500;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片1501
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//開啟圖片1502
+				}
+			}
+			else if(folderInput == 1){	  //for 簡.其他.狄克森
+				if(editorInput == 0){
+					alert("內容建置中");//開啟圖片1510;
+				}
+				else if(editorInput == 1){
+					alert("內容建置中");//開啟圖片1511
+				}
+				else if(editorInput == 2){
+					alert("內容建置中");//開啟圖片1512
+				}
+			}
+		}
+	}
+	else{
+		alert("不合法的選項");
+	}
+}
+
+
+initLanguage(document.form1.Layer1);
+initType(document.form1.Layer1, document.form1.Layer2);
+initFolder(document.form1.Layer1, document.form1.Layer2, document.form1.Layer3);
+initEditor(document.form1.Layer1, document.form1.Layer2, document.form1.Layer3, document.form1.Layer4);
+
+
+
+
+</script>
+</form>
+<form id="form2" name="form2" method="post" action="">
+<input type="button" name="preview" value="預覽課程" 
+onclick= "PreviewLink(document.form1.Layer1.selectedIndex, document.form1.Layer2.selectedIndex, document.form1.Layer3.selectedIndex, document.form1.Layer4.selectedIndex)" />
+
+<a href="Manual.htm">使用教學</a>
+
+</form>
+<div id="Layer1"><img src="主頁面.jpg" alt="back" width="705" height="509" /></div>
+</body>
+</html>
